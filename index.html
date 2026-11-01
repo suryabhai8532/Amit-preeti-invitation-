@@ -45,6 +45,8 @@ h2{font-family:'Gloock',serif;font-weight:400;color:#a86b70;font-size:2.6rem;lin
 .names{font-family:'Gloock',serif;color:var(--maroon);font-size:2.6rem;line-height:1.2}
 .amp{color:var(--gold);font-size:1.5rem;display:block;margin:4px 0}
 .small{font-style:italic;font-size:.85rem;opacity:.75;margin-top:14px}
+.par{margin:8px auto 0;max-width:290px;line-height:1.5}
+#invite .amp{margin:16px 0 4px}
 .scrollhint{margin-top:26px;font-size:.7rem;letter-spacing:.25em;color:var(--rose)}
 
 /* SCRATCH */
@@ -151,8 +153,11 @@ h2{font-family:'Gloock',serif;font-weight:400;color:#a86b70;font-size:2.6rem;lin
 </svg></div>
     <div class="shloka" id="shloka"></div>
     <p class="sub" id="blessing"></p>
-    <div class="names"><span id="n1"></span><span class="amp">&amp;</span><span id="n2"></span></div>
-    <p class="small" id="parents"></p>
+    <div class="names"><span id="n1"></span></div>
+    <p class="small par" id="par1"></p>
+    <span class="amp">&amp;</span>
+    <div class="names"><span id="n2"></span></div>
+    <p class="small par" id="par2"></p>
     <div class="scrollhint">SCROLL TO SEE MAGIC ↓</div>
   </div>
 </section>
@@ -224,7 +229,8 @@ h2{font-family:'Gloock',serif;font-weight:400;color:#a86b70;font-size:2.6rem;lin
 const C={
   bride:'Preeti', groom:'Amit Kumar', initials:'P·A',
   date:'2026-12-11T17:00:00',
-  parents:'Son of Late Shri Ashok Kumar & Late Smt. Pratima Kumari · Daughter of Shri Pramod Kumar & Smt. Kumari Smita Sinha',
+  groomParents:'Son of Late Shri Ashok Kumar & Late Smt. Pratima Kumari',
+  brideParents:'Daughter of Shri Pramod Kumar & Smt. Kumari Smita Sinha',
   family:'Shri Arun Kumar, Mr. Anand Prakash Patel, Mr. Ajeet Kumar and Mrs. Priti Singh',
   shloka:'॥ श्री गणेशाय नमः ॥ वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ। निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥',
   blessing:'With the blessings of Shri Ganesh and our beloved families, we joyfully invite you to celebrate the union of',
@@ -233,7 +239,7 @@ const C={
   music:'wedding-song.m4a',              // same folder me rakhein
   photos:['p1.jpg','p2.jpg','p3.jpg','p4.jpg','p5.jpg'],
   venues:[
-    {name:'Family Home',tag:'Haldi · Mehndi · Bhoj',addr:'Near R.D.H. High School, Chhabilapur Road, Rajgir, Bihar – 803116',img:'',map:'https://goo.gl/maps/75HDHE9sxdkwi6wQ9'},
+    {name:'Family Home',tag:'Haldi · Mehndi · Bhoj',addr:'Near R.D.H. High School, Chhabilapur Road, Rajgir, Bihar – 803116',img:'',map:'https://maps.app.goo.gl/q2cLiGo3Z2K5QTtm9'},
     {name:'Rajgir Residency',tag:'Baraat Destination',addr:'Rajgir, near Kund Par, Nalanda, Bihar',img:'venue.jpg',map:'Rajgir Residency Rajgir Nalanda'}
   ],
   contacts:[
@@ -241,8 +247,8 @@ const C={
     {n:'Mr. Anand Prakash Patel',p:'9308272940'}
   ],
   events:[
-    {n:'Matkor & Mandapachchadan',d:'WED · 09 DEC 2026',slots:[{t:'10:00 AM onwards',items:['Matkor','Mandapachchadan','Satyanarayan Puja']}],v:'Family Home, Rajgir',map:'https://goo.gl/maps/75HDHE9sxdkwi6wQ9'},
-    {n:'Haldi, Mehndi & Bhoj',d:'THU · 10 DEC 2026',slots:[{t:'10:00 AM onwards',items:['Haldi & Kalash','Dhritdhari (Ghritdhari)','Mehndi']},{t:'5:00 PM onwards',items:['Bhoj']}],v:'Family Home, Rajgir',map:'https://goo.gl/maps/75HDHE9sxdkwi6wQ9'},
+    {n:'Matkor & Mandapachchadan',d:'WED · 09 DEC 2026',slots:[{t:'10:00 AM onwards',items:['Matkor','Mandapachchadan','Satyanarayan Puja']}],v:'Family Home, Rajgir',map:'https://maps.app.goo.gl/q2cLiGo3Z2K5QTtm9'},
+    {n:'Haldi, Mehndi & Bhoj',d:'THU · 10 DEC 2026',slots:[{t:'10:00 AM onwards',items:['Haldi & Kalash','Dhritdhari (Ghritdhari)','Mehndi']},{t:'5:00 PM onwards',items:['Bhoj']}],v:'Family Home, Rajgir',map:'https://maps.app.goo.gl/q2cLiGo3Z2K5QTtm9'},
     {n:'Baraat',d:'FRI · 11 DEC 2026',slots:[{t:'5:00 PM onwards',items:['Baraat – from Home (near R.D.H. High School) to Rajgir Residency']}],v:'Rajgir Residency, Rajgir',map:'Rajgir Residency Rajgir Nalanda'}
   ]
 };
@@ -255,7 +261,7 @@ const map=q=>/^https?:/.test(q)?q:'https://www.google.com/maps/search/?api=1&que
 if(C.ganesh)$('ganesh').innerHTML=`<img src="${C.ganesh}" alt="Shri Ganesh">`;
 $('shloka').textContent=C.shloka; $('blessing').textContent=C.blessing;
 ['n1','e1'].forEach(i=>$(i).textContent=C.groom);['n2','e2'].forEach(i=>$(i).textContent=C.bride);
-$('parents').textContent=C.parents; $('family').textContent=C.family;
+$('par1').textContent=C.groomParents;$('par2').textContent=C.brideParents; $('family').textContent=C.family;
 $('dateline').textContent=[String(D.getDate()).padStart(2,'0'),String(D.getMonth()+1).padStart(2,'0'),D.getFullYear()].join(' · ');
 /* photo stack: tap or swipe to move to the next photo */
 (function(){
